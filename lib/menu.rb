@@ -27,7 +27,7 @@ module Menu
     if Plant.title
 
       puts "|    'main'   |   'planting'   |   'care'    |   'varieties'   |   'pests'    |"
-      puts '+-----------------------------------------------------------------------------|'
+      puts '+-----------------------------------------------------------------------------+'
     end
   end
 
@@ -54,6 +54,7 @@ module Menu
     when 'logout'
       Auth.logout
     when *list_options
+      @show_list = false
       system('clear')
       List.pick_list(i)
     else

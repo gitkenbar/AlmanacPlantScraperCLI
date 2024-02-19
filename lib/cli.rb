@@ -1,6 +1,5 @@
 require_relative 'auth'
 require_relative 'menu'
-require 'artii'
 class CLI
   # run
   def run

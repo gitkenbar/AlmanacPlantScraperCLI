@@ -18,7 +18,6 @@ class List
 
     plant_name.each_with_index do |plant, i|
       plant_text = plant.text
-      puts plant.text
       case plant_text
       when 'Apples'
         @fruit_index = i
@@ -52,16 +51,6 @@ class List
         @houseplants << plant
       end
     end
-  end
-
-  def self.display_list
-    system('clear')
-    puts '+-----------------------------------------------+'
-    puts "| 'vegetables' | 'fruits' | 'herbs' | 'flowers' |"
-    puts "| 'houseplants'| 'woody'  |  'all'  | 'foliage' |"
-    puts '+-----------------------------------------------+'
-    input = gets.chomp.strip.downcase.gsub(' ', '-')
-    pick_list(input)
   end
 
   def self.pick_list(i)
@@ -128,42 +117,5 @@ class List
     pick_list('foliage')
     pick_list('woody')
     pick_list('houseplants')
-  end
-
-  def self.relic_code
-    @plant_array.each do |plant|
-      plant_text = plant.text
-      case plant_text
-      when 'Artichokes'
-        puts '-----'
-        puts 'Vegetables:'
-        puts '-----'
-      when 'Apples'
-        puts '-----'
-        puts 'Fruits:'
-        puts '-----'
-      when 'Basil'
-        puts '-----'
-        puts 'Herbs:'
-        puts '-----'
-      when 'Amaranth'
-        puts '-----'
-        puts 'Flowers:'
-        puts '-----'
-      when 'Bamboo'
-        puts '-----'
-        puts 'Foliage Plants:'
-        puts '-----'
-      when 'Arborvitae'
-        puts '-----'
-        puts 'Trees, Shrubs, and Vines'
-        puts '-----'
-      when 'AfricanViolets'
-        puts '-----'
-        puts 'Houseplants:'
-        puts '-----'
-      end
-      puts " - #{plant_text}"
-    end
   end
 end
