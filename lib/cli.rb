@@ -1,18 +1,19 @@
-
 require_relative 'auth'
 require_relative 'menu'
-
+require 'artii'
 class CLI
   # run
   def run
+    List.make_list
     system('clear')
     greeting
-    #Auth.authenticate
+    # Auth.authenticate
+
     while Menu.menu != 'exit'
       # while menu isn't exit, keep executing menu
     end
   end
-  
+
   # greeting
 
   def greeting

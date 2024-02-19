@@ -13,34 +13,55 @@ module Menu
 
   # list of options
   def self.menu_options
-    puts '--------------------------------------------------------'
-    puts '--------------Type list to see all plants---------------'
-    puts '--Type a plant to display information about that plant--'
-    puts "----------Exit the program by entering 'exit'-----------"
-    puts '--------------------------------------------------------'
-  end
+    # Feature Idea: Application checks each category(or maybe just a couple of categories?) for content before displaying as an option
+    # Ex: Hostas do not have 'harvest'
+    puts "                             --{[( #{Plant.title} )]}--" if Plant.title
+    puts '+-----------------------------------------------------------------------------+'
+    puts "|  Available Commands  |     'list'     |     plant name     |     'exit'     |"
+    puts '+-----------------------------------------------------------------------------+'
+    if @show_list
+      puts "|     'vegetables'      |     'fruits'    |     'herbs'    |     'flowers'    |"
+      puts "|     'houseplants'     |     'woody'     |      'all'     |     'foliage'    |"
+      puts '+-----------------------------------------------------------------------------+'
+    end
+    if Plant.title
 
-  def self.plant_list
-    List.make_list
+      puts "|    'main'   |   'planting'   |   'care'    |   'varieties'   |   'pests'    |"
+      puts '+-----------------------------------------------------------------------------|'
+    end
   end
 
   def self.choose_option(i)
-    agri_info = i.gsub('grow-', '')
-    puts agri_info
+    list_options = %w[vegetables fruits herbs flowers houseplants woody foliage all]
     case i
+    when 'main'
+      Plant.main
+    when 'grow'
+      Plant.growing
+    when 'planting'
+      Plant.planting
+    when 'care'
+      Plant.care
+    when 'pests'
+      Plant.pests
+    when 'varieties'
+      Plant.varieties
     when 'exit'
-      self.end_program
+      end_program
     when 'list'
-      self.plant_list
+      system('clear')
+      @show_list = !@show_list
     when 'logout'
       Auth.logout
+    when *list_options
+      system('clear')
+      List.pick_list(i)
     else
-      #needs to send data to 'plant.rb' to be checked
+      # needs to send data to 'plant.rb' to be checked
       Plant.plant_info(i)
     end
   end
 
-  
   # end program
   def self.end_program
     puts 'Thank you for using the Almanac Plant CLI'

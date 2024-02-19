@@ -1,11 +1,18 @@
-To-Do:
+# About:
+This CLI scrapes data from Almanac.com
 
-Add a logout option
+# To-Do:
+## README.md
+Add technical documentation in the README.md file
+
+## plant.rb
+Dynamically format paragraphs so that they render beautifully onto the page
+
+## auth.rb
 Add a reset password option
 
-Add technical documentation in the readme.md file
-
-
-#scraper.rb
--list.plant_info - want to add ability to display just vegetables, just fruits, etc.
--scraper.scrape_vegetables - need to trim the comments off, perhaps even chop up the article and create a sub-menu to access each piece individually
+## scraper.rb
+Add more comprehensive error handling
+  - predict edge case issues
+    - "()" removal is the only one I can see
+    - The plant list has entries with "()" in them, but parenthesis are not in the URL and should be removed
