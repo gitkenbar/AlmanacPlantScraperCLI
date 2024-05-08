@@ -14,20 +14,23 @@ class List
   def self.make_list
     list_URL = 'https://www.almanac.com/gardening/growing-guides'
     doc = Nokogiri::HTML(URI.open(list_URL))
-    plant_name = doc.css('.views-field-title')
-
+    plant_name = doc.css('.views-field-field-grid-title > h3 > a')
     plant_name.each_with_index do |plant, i|
+      # This loop finds the first plant of each category and creates and Index
       plant_text = plant.text
+        # This strips any residual HTML
       case plant_text
+      when 'Artichokes'
+        @vegetable_index = i
       when 'Apples'
         @fruit_index = i
       when 'Basil'
         @herb_index = i
-      when 'Amaranth'
+      when 'Amaranths'
         @flower_index = i
       when 'Bamboo'
         @foliage_index = i
-      when 'Arborvitae'
+      when 'Boxwoods'
         @woody_index = i
       when 'African Violets'
         @houseplants_index = i
@@ -35,7 +38,8 @@ class List
     end
 
     plant_name.each_with_index do |plant, i|
-      if i < @fruit_index
+      # This loop sorts the plants by category, using the index created above
+      if @vegetable_index <= i && i < @fruit_index
         @vegetables << plant
       elsif @fruit_index <= i && i < @herb_index
         @fruits << plant
@@ -53,8 +57,8 @@ class List
     end
   end
 
-  def self.pick_list(i)
-    case i
+  def self.pick_list(plant)
+    case plant
     when 'vegetables'
       puts '+--------------------+'
       puts '|     Vegetables     |'
@@ -98,15 +102,21 @@ class List
         puts "- #{woody.text}"
       end
     when 'houseplants'
-      puts '+--------------------+'
+      border_box
       puts '|    House Plants    |'
-      puts '+--------------------+'
+      border_box
       @houseplants.each do |house|
         puts "- #{house.text}"
       end
     when 'all'
       full_list
     end
+
+    
+  end
+
+  def self.box_builder
+    puts '+--------------------+'
   end
 
   def self.full_list
@@ -117,5 +127,45 @@ class List
     pick_list('foliage')
     pick_list('woody')
     pick_list('houseplants')
+  end
+
+
+  # Used for Testing
+  def self.index_check(plant)
+    case plant
+    when 'vegetables'
+      return @vegetable_index
+    when 'fruits'
+      return @fruit_index
+    when 'herbs'
+      return @herb_index
+    when 'flowers'
+      return @flower_index
+    when 'foliage'
+      return @foliage_index
+    when 'woody_plant'
+      return @woody_index
+    when 'houseplants'
+      return @houseplants_index
+    end
+  end
+
+  def self.array_check(plant)
+    case plant
+    when 'vegetables'
+      return @vegetables
+    when 'fruits'
+      return @fruits
+    when 'herbs'
+      return @herbs
+    when 'flowers'
+      return @flowers
+    when 'foliage'
+      return @foliage_plants
+    when 'woody'
+      return @woody_plants
+    when 'houseplants'
+      return @houseplants
+    end
   end
 end

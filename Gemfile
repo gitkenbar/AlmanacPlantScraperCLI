@@ -10,5 +10,6 @@ gem "rspec"
 gem "nokogiri"
 gem "httparty"
 gem "bcrypt"
+gem "rexml"
 
 # gem "rails"
