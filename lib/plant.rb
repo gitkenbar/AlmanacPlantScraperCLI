@@ -1,11 +1,10 @@
 require_relative 'scraper'
 
-# Needs Rework! Only displays a handful of fields.
-# Needs to break up document and display one chunk at a time
 class Plant
-  def self.plant_info(i)
+  def self.plant_info(plant_name)
     system('clear')
-    doc = Scraper.scrape_plant(i)
+    doc = Scraper.scrape_plant(plant_name)
+
     #-Plant Data variables
     @plant_name = doc.css('.page-title').text.strip
 
@@ -35,7 +34,8 @@ class Plant
       .field--name-field-harvest  .field__item > ul > li'
     )
 
-    @pests_diseases = doc.css('.field--name-field-pests > .field__label,
+    @pests_diseases = doc.css(
+      '.field--name-field-pests > .field__label,
       .field--name-field-pests > .field__item > p')
     @pests_table_title = doc.css('.field--name-field-pests > .field__item > .plant-table > table > caption')
 
@@ -52,7 +52,7 @@ class Plant
 
     # needs to pull <p> <h3> <figure> <li>
 
-    @plant_type = doc.css('.field--name-field-plant-type-term')
+    @plant_type = doc.css('.field--name-field-plant-type-term').text.strip
     @botanical_name = doc.css('.field--name-field-botanicalname').text.strip
     @plant_flower_color = doc.css('.field--name-field-flower-color-term').text.strip
     @plant_special = doc.css('.field--name-field-special-features-term').text.strip

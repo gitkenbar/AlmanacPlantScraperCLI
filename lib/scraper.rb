@@ -4,10 +4,10 @@ require_relative 'plant'
 
 module Scraper
   def self.scrape_plant(input)
-    index_url = 'https://www.almanac.com/plant/'
+    base_url = 'https://www.almanac.com/plant/'
 
     begin
-      uri_open = URI.open(index_url + input)
+      uri_open = URI.open(base_url + input)
       Nokogiri::HTML(uri_open)
     rescue OpenURI::HTTPError => e
       if e.message == '404 Not Found'

@@ -1,6 +1,9 @@
 require 'bcrypt'
 require 'json'
 
+
+## Originally a part of the Codefi assignment, Not used in current Iteration of Almanac Plant CLI
+
 class User
   attr_accessor :username, :password
 
