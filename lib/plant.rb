@@ -57,7 +57,7 @@ class Plant
     @plant_flower_color = doc.css('.field--name-field-flower-color-term').text.strip
     @plant_special = doc.css('.field--name-field-special-features-term').text.strip
 
-    @plant_sun = doc.css('.field--name-field-sun-exposure-term')
+    @plant_sun = doc.css('.field--name-field-sun-exposure-term > .field__items > .field__item > a').text
     @plant_ph = doc.css('.field--name-field-soil-ph-term').text.strip
     @plant_hardiness = doc.css('.block-field-blocknodeplantfield-hardiness-zone-term').text.strip
 
@@ -160,4 +160,23 @@ class Plant
   def self.clear
     @@plants.clear
   end
+
+
+  ## TESTING FUNCTIONS
+
+  def self.check_article(article)
+    case article
+    when 'main'
+      return @plant_text_body
+    when 'planting'
+      return @planting_info
+    when 'care'
+      return @growing
+    when 'varieties'
+      return @recommended_varieties
+    when 'pests'
+      return @pests_diseases
+    end
+  end
+
 end

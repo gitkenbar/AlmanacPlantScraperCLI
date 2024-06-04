@@ -3,6 +3,7 @@ require 'open-uri'
 require_relative 'plant'
 
 class List
+  @master_list = []
   @vegetables = []
   @fruits = []
   @herbs = []
@@ -167,5 +168,20 @@ class List
     when 'houseplants'
       return @houseplants
     end
+  end
+
+  def self.list_builder
+    @master_list << @vegetables
+    @master_list << @fruits
+    @master_list << @herbs
+    @master_list << @flowers
+    @master_list << @foliage_plants
+    @master_list << @woody_plants
+    @master_list << @houseplants
+  end
+
+  def self.master_list_check
+    this.list_builder
+    return @master_list
   end
 end
