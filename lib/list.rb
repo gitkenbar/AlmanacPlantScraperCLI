@@ -102,9 +102,9 @@ class List
         puts "- #{woody.text}"
       end
     when 'houseplants'
-      border_box
+      puts '+--------------------+'
       puts '|    House Plants    |'
-      border_box
+      puts '+--------------------+'
       @houseplants.each do |house|
         puts "- #{house.text}"
       end
