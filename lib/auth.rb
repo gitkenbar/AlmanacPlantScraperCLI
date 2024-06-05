@@ -1,3 +1,4 @@
+# Not currently in use. This was a part of the original assignment that isn't being utilized in the current build
 require_relative 'user'
 
 module Auth

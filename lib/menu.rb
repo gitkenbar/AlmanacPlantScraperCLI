@@ -13,25 +13,28 @@ module Menu
 
   # list of options
   def self.menu_options
-    # Feature Idea: Application checks each category(or maybe just a couple of categories?) for content before displaying as an option
-    # Ex: Hostas do not have 'harvest'
+
+    # Builds base menu
     puts "                             --{[( #{Plant.title} )]}--" if Plant.title
     puts '+-----------------------------------------------------------------------------+'
     puts "|  Available Commands  |     'list'     |     plant name     |     'exit'     |"
     puts '+-----------------------------------------------------------------------------+'
-    if @show_list
-      puts "|     'vegetables'      |     'fruits'    |     'herbs'    |     'flowers'    |"
-      puts "|     'houseplants'     |     'woody'     |      'all'     |     'foliage'    |"
-      puts '+-----------------------------------------------------------------------------+'
-    end
-    if Plant.title
 
-      puts "|    'main'   |   'planting'   |   'care'    |   'varieties'   |   'pests'    |"
-      puts '+-----------------------------------------------------------------------------+'
+    if @show_list
+    # Displays all the categories of plants that can be called
+    puts "|     'vegetables'      |     'fruits'    |     'herbs'    |     'flowers'    |"
+    puts "|     'houseplants'     |     'woody'     |      'all'     |     'foliage'    |"
+    puts '+-----------------------------------------------------------------------------+'
+    end
+
+    if Plant.title
+    puts "|    'main'   |   'planting'   |   'care'    |   'varieties'   |   'pests'    |"
+    puts '+-----------------------------------------------------------------------------+'
     end
   end
 
   def self.choose_option(i)
+    # This is the primary controller, all user input flows through this function
     list_options = %w[vegetables fruits herbs flowers houseplants woody foliage all]
     case i
     when 'main'

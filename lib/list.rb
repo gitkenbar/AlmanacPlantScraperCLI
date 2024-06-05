@@ -3,6 +3,7 @@ require 'open-uri'
 require_relative 'plant'
 
 class List
+    #Empty arrays populated by make_list
   @master_list = []
   @vegetables = []
   @fruits = []
@@ -17,7 +18,7 @@ class List
     doc = Nokogiri::HTML(URI.open(list_URL))
     plant_name = doc.css('.views-field-field-grid-title > h3 > a')
     plant_name.each_with_index do |plant, i|
-      # This loop finds the first plant of each category and creates and Index
+      # This loop finds the first plant of each category and creates an Index
       plant_text = plant.text
         # This strips any residual HTML
       case plant_text
@@ -112,8 +113,6 @@ class List
     when 'all'
       full_list
     end
-
-    
   end
 
   def self.box_builder
