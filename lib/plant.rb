@@ -33,10 +33,9 @@ class Plant
       .field--name-field-harvest  .field__item > h4,
       .field--name-field-harvest  .field__item > ul > li'
     )
-
+    @pest_disease_title = doc.css('.field--name-field-pests > .field__label')
     @pests_diseases = doc.css(
-      '.field--name-field-pests > .field__label,
-      .field--name-field-pests > .field__item > p')
+      '.field--name-field-pests > .field__item > p')
     @pests_table_title = doc.css('.field--name-field-pests > .field__item > .plant-table > table > caption')
 
     @pests_diseases_table_headers = doc.css('.field--name-field-pests > .field__item > .plant-table > table > thead > tr > th')
@@ -167,15 +166,35 @@ class Plant
   def self.check_article(article)
     case article
     when 'main'
-      return @plant_text_body
+      if @plant_text_body
+        return true
+      else
+        return false
+      end
     when 'planting'
-      return @planting_info
+      if @planting_info
+        return true
+      else
+        return false
+      end
     when 'care'
-      return @growing
+      if @growing
+        return true
+      else
+        return false
+      end
     when 'varieties'
-      return @recommended_varieties
+      if @recommended_varieties
+        return true
+      else
+        return false
+      end
     when 'pests'
-      return @pests_diseases
+      if @pests_diseases
+        return true
+      else
+        return false
+      end
     end
   end
 

@@ -40,6 +40,7 @@ class List
     end
 
     plant_name.each_with_index do |plant, i|
+      @master_list << plant
       # This loop sorts the plants by category, using the index created above
       if @vegetable_index <= i && i < @fruit_index
         @vegetables << plant
@@ -57,6 +58,7 @@ class List
         @houseplants << plant
       end
     end
+
   end
 
   def self.pick_list(plant)
@@ -166,7 +168,12 @@ class List
       return @woody_plants
     when 'houseplants'
       return @houseplants
+    when 'all'
+      return full_list
+    when 'master'
+      return @master_list
     end
+  
   end
 
   def self.list_builder
