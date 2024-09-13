@@ -18,7 +18,7 @@ RSpec.describe Plant do
         Menu.choose_option(`#{plant}`)
         describe plant.text do
             #it 'has Article-Main' do
-            #    expect(Plant.check_article('main')).to eq(false)
+            #    expect(Plant.check_article('main')).to eq(true)
             #end
 
             #it 'has Article-Planting' do
