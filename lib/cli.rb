@@ -3,12 +3,16 @@ require_relative 'menu'
 class CLI
   # run
   def run 
+    
     # When application runs, first make the plant list
     List.make_list
+
     # Clear the console
     system('clear')
+
     # Say hi!
     greeting
+
     # Log In (Not currently implemented)
     # Auth.authenticate
 

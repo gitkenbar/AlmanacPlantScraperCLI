@@ -29,19 +29,21 @@ class Plant
     )
 
     @harvesting = doc.css(
-      '.field--name-field-harvest  .field__item > p,
+      '.field--name-field-harvest .field__label,
+      .field--name-field-harvest  .field__item > p,
       .field--name-field-harvest  .field__item > h4,
       .field--name-field-harvest  .field__item > ul > li'
     )
-
+  
     @pests_diseases = doc.css(
-      '.field--name-field-pests > .field__label,
-      .field--name-field-pests > .field__item > p')
+      '.field--name-field-pests .field__label,
+      .field--name-field-pests .field__item > p,
+      .field--name-field-pests .field__item > ul > li')
+
     @pests_table_title = doc.css('.field--name-field-pests > .field__item > .plant-table > table > caption')
 
     @pests_diseases_table_headers = doc.css('.field--name-field-pests > .field__item > .plant-table > table > thead > tr > th')
     @pests_diseases_rows = doc.css('.field--name-field-pests > .field__item > .plant-table > table > tbody > tr')
-    @pests_diseases_list = doc.css('.field--name-field-pests > .field__item')
     @pests_rows_titles = @pests_diseases_rows.css('th')
 
     @recommended_varieties = doc.css(
@@ -115,8 +117,13 @@ class Plant
   def self.pests
     # if pests is in the form of a ul, it does not render
     system('clear')
-    @pests_table_title.text
-    if @pests_diseases_rows
+    
+      @pests_diseases.each do |field|
+        puts "  #{field.text}"
+        puts ' '
+      end
+      
+      @pests_table_title.text
       @pests_diseases_rows.each do |field|
         pest_name = field.css('th')
         pest_data = field.css('td')
@@ -128,19 +135,7 @@ class Plant
         puts " -#{@pests_diseases_table_headers[3].text} "
         puts "    #{pest_data[2].text}"
         puts ''
-      end
-    elsif @pests_diseases
-      @pests_diseases.each do |field|
-        puts "  #{field.text}"
-        puts ' '
-      end
-    elsif @pests_diseases_list
-      @pests_diseases_list.each do |field|
-        puts "  #{field.text}"
-        puts ' '
-      end
-    else
-      puts 'There was an Issue'
+    
     end
   end
 
@@ -167,15 +162,35 @@ class Plant
   def self.check_article(article)
     case article
     when 'main'
-      return @plant_text_body
+      if @plant_text_body
+        return true
+      else
+        return false
+      end
     when 'planting'
-      return @planting_info
+      if @planting_info
+        return true
+      else
+        return false
+      end
     when 'care'
-      return @growing
+      if @growing
+        return true
+      else
+        return false
+      end
     when 'varieties'
-      return @recommended_varieties
+      if @recommended_varieties
+        return true
+      else
+        return false
+      end
     when 'pests'
-      return @pests_diseases
+      if @pests_diseases
+        return true
+      else
+        return false
+      end
     end
   end
 

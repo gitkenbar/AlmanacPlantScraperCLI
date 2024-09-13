@@ -4,18 +4,20 @@ RSpec.describe List do
     before do 
         List.make_list 
     end
+
+    
     describe 'Index changed at:' do
         it 'vegetables' do
         expect(List.index_check('vegetables')).to eq(0)
         end
         it 'fruits' do
-        expect(List.index_check('fruits')).to eq(50)
+        expect(List.index_check('fruits')).to eq(51)
         end
         it 'herbs' do
-        expect(List.index_check('herbs')).to eq(71)
+        expect(List.index_check('herbs')).to eq(72)
         end
         it 'flowers' do
-        expect(List.index_check('flowers')).to eq(86)
+        expect(List.index_check('flowers')).to eq(87)
         end
         it 'foliage' do
         expect(List.index_check('foliage')).to eq(151)
@@ -27,6 +29,8 @@ RSpec.describe List do
         expect(List.index_check('houseplants')).to eq(187)
         end
     end
+
+
     describe 'Categorize Plants' do
         it 'adds vegetables to array' do
             vegetable_array = List.array_check('vegetables')
@@ -61,7 +65,7 @@ RSpec.describe List do
         it 'adds houseplants to array' do
             houseplant_array = List.array_check('houseplants')
             expect(houseplant_array[1].text).to eq('Air Plants (Tillandsia)')
-            expect(houseplant_array[-1].text).to eq('Creeping Thyme')
+            expect(houseplant_array[-1].text).to eq('Wisteria')
         end
     end
 end
